@@ -1,0 +1,60 @@
+{% extends 'base.html '%}
+{% block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        table td, table th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        table th {
+            background-color: lightgray;
+        }
+        table tr:hover {
+            background-color: lightblue;
+        }
+        .ncrna {
+            background-color: #FFD2D2; /* Lighter shade of red */
+        }
+        .not-ncrna {
+            background-color: #C7EFCB; /* Lighter shade of green */
+        }
+    </style>
+</head>
+<body>
+    <h1>Result</h1>
+    <table>
+        <thead>
+            <tr>
+                {% for column in result_data.columns %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in result_data.iterrows() %}
+                <tr>
+                    {% for value in row[1].items() %}
+                        {% if loop.index != loop.length %}
+                            <td>{{ value.1 }}</td>
+                        {% else %}
+                            {% if value.1 == 1 %}
+                                <td class="ncrna">{{ value.1 }}</td>
+                            {% else %}
+                                <td class="not-ncrna">{{ value.1 }}</td>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+{% endblock %}

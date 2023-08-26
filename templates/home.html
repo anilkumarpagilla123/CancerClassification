@@ -1,0 +1,358 @@
+{% extends 'base.html '%}
+{% block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+
+        #DNAa{
+            display:flex;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            
+        }
+
+        h1 {
+            text-align: center;
+            color: #272343;
+        }
+
+        .content-section {
+            margin-top: 30px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            margin: 10px;
+            background-color: #e3f6f5;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #003366;
+        }
+
+        .card p {
+            margin-bottom: 0;
+        }
+
+        .file-input {
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .file-input label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .file-input input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color:  #272343;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .submit-btn:hover {
+            background-color:  #385170;
+        }  
+        .con {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        
+        .dna {
+            width: var(--strand-width);
+        }
+
+        .strand {
+            position: relative;
+            width: var(--strand-width);
+            height: var(--strand-height);
+
+            &:nth-child(3n) { /* Add a bit of variation */
+                --strand-color: var(--strand-color-alt);
+            }
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                background: var(--strand-color);
+                animation-duration: calc(var(--animation-duration));
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+                animation-direction: alternate;
+                animation-delay: calc(var(--s) * var(--animation-delay));
+            }
+
+            &::before {
+                left: calc(var(--strand-ball) / 2);
+                top: calc((var(--strand-height) - var(--strand-line)) / 2);
+                width: calc(var(--strand-width) - var(--strand-ball));
+                height: var(--strand-line);
+                animation-name: line;
+                will-change: transform;
+            }
+
+            &::after {
+                top: calc((var(--strand-height) - var(--strand-ball)) / 2);
+                width: var(--strand-ball);
+                height: var(--strand-ball);
+                border-radius: 50%;
+                box-shadow: calc(var(--strand-width) - var(--strand-ball)) 0 0 var(--strand-color);
+                animation-name: ball;
+                will-change: transform, box-shadow;
+            }
+        }
+
+        @keyframes line {
+            to { transform: scaleX(0); }
+        }
+
+        @keyframes ball {
+            to {
+                transform: translateX(calc((var(--strand-width) - var(--strand-ball)) / 2));
+                box-shadow: 0 0 0 var(--strand-color);
+            }
+        }
+        :root {
+            --background-color: #ffffff;
+           --strand-color: #0047ab;
+           --strand-color-alt: #00bfff;
+           --strand-width: 2.5rem;
+           --strand-height: .5rem;
+           --strand-line: .125rem;
+           --strand-ball: calc(var(--strand-height) * .75);
+           --animation-duration: .5s;
+           --animation-delay: calc(var(--animation-duration) * -.375); /* make this negative so the offset operates immediately */
+       }
+    </style>
+</head>
+<body>
+    <h1>Cancer Classification</h1>
+
+    <div class="content-section">
+        
+        <div class="card-container">
+            <div class="card fourth-color">
+                <h3>What is Cancer?</h3>
+                <p>Cancer is a group of diseases characterized by the uncontrolled growth and spread of abnormal cells. It can affect any part of the body.</p>
+            </div>
+            <div class="card second-color">
+                <h3>Early Detection</h3>
+                <p>Early detection of cancer is crucial for successful treatment. Regular screenings and awareness can help identify cancer at an early stage.</p>
+            </div>
+            <div class="card third-color">
+                <h3>Prevention</h3>
+                <p>Healthy lifestyle choices, such as avoiding tobacco, maintaining a balanced diet, and staying physically active, can help reduce the risk of cancer.</p>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+  
+
+    <br><br><br>
+    <h2>Learning more about cancer</h2>
+    <div class="card-container">
+        <div class="card fourth-color">
+            <h3>Kidney Renal Clear Cell Carcinoma (KIRC)</h3>
+            <div class="card-info">
+                <h4>What is KIRC?</h4>
+                <p>KIRC is a type of kidney cancer that begins in the cells lining the small tubes in the kidney. It is the most common type of kidney cancer, characterized by clear cells under a microscope.</p>
+            </div>
+            <div class="card-info">
+                <h4>Prevention</h4>
+                <p>To reduce the risk of KIRC, it is recommended to maintain a healthy lifestyle, quit smoking, limit alcohol consumption, maintain a healthy weight, and stay physically active.</p>
+            </div>
+            <div class="card-info">
+                <h4>Early Detection</h4>
+                <p>Early detection of KIRC can be challenging as it often does not cause noticeable symptoms in the early stages. Regular check-ups and screenings can help identify KIRC at an early and treatable stage.</p>
+            </div>
+        </div>
+        <!-- Repeat the above structure for other cancer types (PRAD, COAD, LUAD, BRCA) -->
+        <!-- PRAD -->
+        <div class="card second-color">
+            <h3>Prostate Adenocarcinoma (PRAD)</h3>
+            <div class="card-info">
+                <h4>What is PRAD?</h4>
+                <p>PRAD is the most common type of prostate cancer, which develops in the gland cells of the prostate. It usually grows slowly and may not cause significant symptoms in the early stages.</p>
+            </div>
+            <div class="card-info">
+                <h4>Prevention</h4>
+                <p>To lower the risk of PRAD, maintaining a healthy weight, exercising regularly, consuming a nutritious diet, and avoiding smoking are recommended. Regular screenings are also essential for early detection.</p>
+            </div>
+            <div class="card-info">
+                <h4>Early Detection</h4>
+                <p>Early detection of PRAD involves regular prostate-specific antigen (PSA) blood tests and digital rectal exams (DRE). These tests can help identify any abnormal changes in the prostate and facilitate timely treatment.</p>
+            </div>
+        </div>
+        <!-- COAD -->
+        <div class="card third-color">
+            <h3>Colon Adenocarcinoma (COAD)</h3>
+            <div class="card-info">
+                <h4>What is COAD?</h4>
+                <p>COAD, also known as colorectal cancer, starts in the colon or rectum. It typically begins as a noncancerous polyp and can develop into cancer over time. Early detection is key for effective treatment.</p>
+            </div>
+            <div class="card-info">
+                <h4>Prevention</h4>
+                <p>Preventive measures for COAD include maintaining a healthy weight, adopting a high-fiber diet rich in fruits and vegetables, reducing red and processed meat consumption, limiting alcohol intake, and undergoing regular screenings.</p>
+            </div>
+            <div class="card-info">
+                <h4>Early Detection</h4>
+                <p>Screening tests like colonoscopies and fecal occult blood tests (FOBT) are essential for early detection of COAD. These tests can identify polyps or abnormal cells in the colon, allowing for early intervention.</p>
+            </div>
+        </div>
+        <!-- LUAD -->
+        <div class="card fourth-color">
+            <h3>Lung Adenocarcinoma (LUAD)</h3>
+            <div class="card-info">
+                <h4>What is LUAD?</h4>
+                <p>LUAD is the most common type of lung cancer, typically found in the outer parts of the lungs. It often develops in non-smokers and is associated with specific genetic mutations.</p>
+            </div>
+            <div class="card-info">
+                <h4>Prevention</h4>
+                <p>Preventive measures for LUAD include avoiding smoking and exposure to secondhand smoke, minimizing exposure to environmental pollutants, and protecting oneself from occupational hazards such as asbestos and radon.</p>
+            </div>
+            <div class="card-info">
+                <h4>Early Detection</h4>
+                <p>Early detection of LUAD involves awareness of symptoms such as persistent cough, shortness of breath, chest pain, or coughing up blood. Timely imaging tests, such as CT scans or PET scans, can aid in diagnosis.</p>
+            </div>
+        </div>
+        <!-- BRCA -->
+        <div class="card second-color">
+            <h3>Breast Invasive Carcinoma (BRCA)</h3>
+            <div class="card-info">
+                <h4>What is BRCA?</h4>
+                <p>BRCA is a type of breast cancer that has spread beyond the milk ducts into the breast tissue. It can occur in both men and women, although it is more common in women.</p>
+            </div>
+            <div class="card-info">
+                <h4>Prevention</h4>
+                <p>Preventive measures for BRCA include regular breast self-exams, clinical breast exams, mammograms, maintaining a healthy lifestyle, limiting alcohol consumption, and avoiding hormone replacement therapy.</p>
+            </div>
+            <div class="card-info">
+                <h4>Early Detection</h4>
+                <p>Early detection of BRCA involves regular mammograms, breast ultrasounds, or breast MRIs. Genetic testing can also identify mutations in the BRCA genes, helping individuals make informed decisions about their health.</p>
+            </div>
+        </div>
+    </div>
+    
+    <br><br><br>
+    <div style="background-color:#d5def5; padding: 20px;">
+        <pre>
+         <p>
+         Using advanced machine learning techniques, our system can classify different types of cancer based on genetic data and help in accurate diagnosis
+         and treatment planning.
+         Our model analyzes gene expression patterns to identify specific cancer types such as Prostate Adenocarcinoma (PRAD), Lung Adenocarcinoma (LUAD),
+         Breast Invasive Carcinoma (BRCA), Kidney Renal Clear Cell Carcinoma (KIRC), and Colon Adenocarcinoma (COAD).
+         With the ability to classify cancer types, we aim to support medical professionals in making informed decisions and providing personalized care.
+         Upload your genetic data to our system and let our powerful model analyze and classify your cancer type accurately.
+         Together, we can improve cancer diagnosis and treatment for better patient outcomes.</p>
+        </pre>
+     </div>
+     <br><br><br>
+    
+    <h3>Check for cancer mutations in your genes!</h3>
+    <br><br>
+    <h1>nCRNA Detection</h1>
+    <div id="DNAa">
+      
+    <div class="dna" style="--strands: 16;">
+        <!-- Loop through strands -->
+        <div class="strand" style="--s: 0;"></div>
+        <div class="strand" style="--s: 1;"></div>
+        <div class="strand" style="--s: 2;"></div>
+	<div class="strand" style="--s: 3;"></div>
+        <div class="strand" style="--s: 4;"></div>
+        <div class="strand" style="--s: 5;"></div>
+<div class="strand" style="--s: 6;"></div>
+        <div class="strand" style="--s: 7;"></div>
+        <div class="strand" style="--s: 8;"></div>
+<div class="strand" style="--s: 9;"></div>
+        <div class="strand" style="--s: 10;"></div>
+        <div class="strand" style="--s: 11;"></div>
+<div class="strand" style="--s: 12;"></div>
+        <div class="strand" style="--s: 13;"></div>
+        <div class="strand" style="--s: 14;"></div>
+<div class="strand" style="--s: 15;"></div>
+        <div class="strand" style="--s: 16;"></div>
+        
+        <!-- Add more strands as needed -->
+    </div>
+    <div class="con">
+        <form method="POST" action="/uploadrna" enctype="multipart/form-data">
+            <div class="file-input">
+                <label for="file">Select a file:</label>
+                <input type="file" name="filerna" id="file" accept=".csv">
+            </div>
+            <input type="submit" value="Detect nCRNA" class="submit-btn">
+        </form>
+    </div>
+    <div class="dna" style="--strands: 16;">
+        <!-- Loop through strands -->
+        <div class="strand" style="--s: 0;"></div>
+        <div class="strand" style="--s: 1;"></div>
+        <div class="strand" style="--s: 2;"></div>
+	<div class="strand" style="--s: 3;"></div>
+        <div class="strand" style="--s: 4;"></div>
+        <div class="strand" style="--s: 5;"></div>
+<div class="strand" style="--s: 6;"></div>
+        <div class="strand" style="--s: 7;"></div>
+        <div class="strand" style="--s: 8;"></div>
+<div class="strand" style="--s: 9;"></div>
+        <div class="strand" style="--s: 10;"></div>
+        <div class="strand" style="--s: 11;"></div>
+<div class="strand" style="--s: 12;"></div>
+        <div class="strand" style="--s: 13;"></div>
+        <div class="strand" style="--s: 14;"></div>
+<div class="strand" style="--s: 15;"></div>
+        <div class="strand" style="--s: 16;"></div>
+        
+        <!-- Add more strands as needed -->
+    </div>
+    
+</div>
+<br><br><br><br><br><br>
+</body>
+</html>
+
+{% endblock %}
